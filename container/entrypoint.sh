@@ -202,8 +202,6 @@ echo "logcommon" >> /tmp/rinetd.conf
 i=1
 for RULE_NAME in $RULES_NAME; do
     RULE=$(eval "echo \$$RULE_NAME")
-
-    # Sanitize the rule, removing multiple spaces
     RULE=$(echo "$RULE" | tr -s ' ')
 
     echo "" >> /tmp/rinetd.conf
