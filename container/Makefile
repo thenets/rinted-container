@@ -10,8 +10,8 @@ build:
 .PHONY: run
 run:
 	podman run --rm -it --net=host \
-		-v $(PWD)/rinetd.conf:/etc/rinetd.conf:Z \
-		-e RULE_test_web_server="0.0.0.0  8080    localhost 9000" \
+		-e RULE_test_web_server="0.0.0.0  8080    1.2.3.4 80" \
+		-e RULE_allow_local="allow 127.*.*.*" \
 		$(IMAGE_TAG)
 
 .PHONY: shell
