@@ -19,3 +19,6 @@ rinetd.exe
 *.vcxproj.user
 Debug
 Release
+
+# Force include everything inside ./container/
+!container/*
