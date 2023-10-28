@@ -1,72 +1,8 @@
-# Define the labels to be added to issues and pull requests
-labels:
-  - name: bug
-    color: F44336
-    description: Something isn't working
-  - name: enhancement
-    color: 00BCD4
-    description: New feature or request
-  - name: documentation
-    color: 4CAF50
-    description: Improvements or additions to documentation
-  - name: help wanted
-    color: FFEB3B
-    description: Need some help with this issue
-  - name: good first issue
-    color: 9C27B0
-    description: Good for newcomers
-  - name: container
-    color: 3F51B5
-    description: Issue related to container
-  - name: source
-    color: 2196F3
-    description: Issue related to source code
+# Add the "container" label to pull request that changes the `./container` directory
+container:
+  - 'container/**/*'
 
-# Define the rules for automatically adding labels to issues and pull requests
-rules:
-  # Add the "bug" label to any issue or pull request with the word "bug" in the title
-  - name: Bug
-    conditions: >
-      (issue.title.contains('bug', 'Bug') || pull_request.title.contains('bug', 'Bug'))
-    actions:
-      - add_labels: bug
-
-  # Add the "enhancement" label to any issue or pull request with the word "enhancement" in the title
-  - name: Enhancement
-    conditions: >
-      (issue.title.contains('enhancement', 'Enhancement') || pull_request.title.contains('enhancement', 'Enhancement'))
-    actions:
-      - add_labels: enhancement
-
-  # Add the "documentation" label to any issue or pull request with the word "documentation" in the title
-  - name: Documentation
-    conditions: >
-      (issue.title.contains('documentation', 'Documentation') || pull_request.title.contains('documentation', 'Documentation'))
-    actions:
-      - add_labels: documentation
-
-  # Add the "help wanted" label to any issue or pull request with the label "help wanted" in the body
-  - name: Help Wanted
-    conditions: issue.body.contains('help wanted', 'Help Wanted')
-    actions:
-      - add_labels: help wanted
-
-  # Add the "good first issue" label to any issue or pull request with the label "good first issue" in the body
-  - name: Good First Issue
-    conditions: issue.body.contains('good first issue', 'Good First Issue')
-    actions:
-      - add_labels: good first issue
-
-  # Add the "container" label to pull request that changes the `./container` directory
-  - name: Container
-    conditions: >
-      pull_request.files_changed.contains('./container')
-    actions:
-      - add_labels: container
-
-  # Add the "source" label to pull request that changes anything but the `./container` directory
-  - name: Source
-    conditions: >
-      pull_request.files_changed.excludes('./container')
-    actions:
-      - add_labels: source
+# Add the "source" label to pull request that changes anything but the `./container` directory
+source:
+  - '*'
+  - '!container/**/*'
