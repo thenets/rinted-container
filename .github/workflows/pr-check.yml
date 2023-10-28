@@ -31,7 +31,6 @@ jobs:
       - name: "🖥️ Container build"
         run: |
           set -x
-
-          sleep 1 && pwd && sleep 1 && ls -lah && cd ./container/
-          sleep 1 && pwd && sleep 1 && ls -lah && make build
-          sleep 1 && pwd && sleep 1 && ls -lah && make push
+          cd ./container/
+          make build
+          make push
