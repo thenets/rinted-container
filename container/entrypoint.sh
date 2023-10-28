@@ -136,7 +136,7 @@ for RULE_NAME in $RULES_NAME; do
             exit 1
         fi
 
-        log_info "#$i: $RULE_NAME = '$RULE' (allow/deny rule)"
+        log_success "#$i: $RULE_NAME = '$RULE' (allow/deny rule)"
         i=$((i+1))
         continue
     fi
