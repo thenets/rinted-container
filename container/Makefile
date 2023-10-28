@@ -21,7 +21,10 @@ shell:
 		$(IMAGE_TAG) \
 		/bin/bash
 
-.PHONY: build-release-and-push
-build-release-and-push:
-	make build ADDITIONAL_BUILD_ARGS="--squash-all"
+.PHONY: release-build
+release-build:
+	make build ADDITIONAL_BUILD_ARGS="--squash" --no-print-directory
+
+.PHONY: release-push
+release-push:
 	podman push $(IMAGE_TAG)
