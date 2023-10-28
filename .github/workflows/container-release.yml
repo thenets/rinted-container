@@ -31,4 +31,7 @@ jobs:
         run: |
           set -x
           cd ./container/
+          export IMAGE_TAG=quay.io/thenets/rinetd:latest
+          make release-push
+          export IMAGE_TAG=quay.io/thenets/rinetd:${{ github.sha }}
           make release-push
