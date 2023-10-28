@@ -24,12 +24,19 @@ RUN set -x \
     && cd /build/ \
     && make install
 
+COPY ./container/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # ==========================
 # Final image
 FROM docker.io/redhat/ubi9-minimal:latest
 
 RUN set -x \
+    && microdnf install -y ncurses \
     && microdnf upgrade -y \
     && microdnf clean all
 
 COPY --from=builder /usr/local/sbin/rinetd /usr/local/sbin/rinetd
+COPY --from=builder /entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
