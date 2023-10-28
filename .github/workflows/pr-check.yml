@@ -1,0 +1,36 @@
+name: PR check
+run-name: ${{ github.actor }} triggered a container build for ${{ github.ref }}
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+jobs:
+  Triage:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v4
+  Container-Build-and-Push:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+            echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+            echo "🐧 This job is now running on a ${{ runner.os }} server."
+
+      - name: "🚚 Check out repository code: ${{ github.ref }} ${{ github.repository }}"
+        uses: actions/checkout@v4
+
+      # debug
+      - name: "🔑 Authenticate with Quay.io"
+        uses: docker/login-action@v1
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: "🖥️ Container build"
+        run: |
+          cd ./container/
+          make build
+          make push
