@@ -1,5 +1,7 @@
 # container build
-container/
+container/Dockerfile
+container/Makefile
+container/rinetd.conf
 
 # from .gitignore
 .auto

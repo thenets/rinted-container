@@ -11,8 +11,8 @@ build:
 run:
 	podman run --rm -it --net=host \
 		-v $(PWD)/rinetd.conf:/etc/rinetd.conf:Z \
-		$(IMAGE_TAG) \
-		rinetd -f -c /etc/rinetd.conf
+		-e RULE_test_web_server="0.0.0.0  8080    localhost 9000" \
+		$(IMAGE_TAG)
 
 .PHONY: shell
 shell:
