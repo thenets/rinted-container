@@ -1,0 +1,8 @@
+# Add the "container" label to pull request that changes the `./container` directory
+container:
+  - 'container/**/*'
+
+# Add the "source" label to pull request that changes anything but the `./container` directory
+source:
+  - any: ['**']
+    all: ['!container/**/*']

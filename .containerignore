@@ -1,3 +1,7 @@
+# container build
+container/
+
+# from .gitignore
 .auto
 .deps
 .dirstamp
@@ -19,6 +23,3 @@ rinetd.exe
 *.vcxproj.user
 Debug
 Release
-
-# Force include everything inside ./container/
-!container/*
