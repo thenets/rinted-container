@@ -31,6 +31,8 @@ jobs:
 
       - name: "🖥️ Container build"
         run: |
-          cd ./container/
-          make build
-          make push
+          set -x
+
+          pwd && cd ./container/
+          pwd && make build
+          pwd && make push
