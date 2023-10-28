@@ -1,10 +1,8 @@
-name: Container release
-run-name: ${{ github.actor }} triggered a container build and push release
+name: Container release auto patch
+run-name: ${{ github.actor }} triggered a container build and push every week for 'main' branch
 on:
-  push:
-    branches:
-      - main
-      - 'refs/tags/*'
+  schedule:
+    - cron: "0 0 * * 0"
 
 jobs:
   Container-Build-and-Push:
@@ -35,13 +33,5 @@ jobs:
         run: |
           set -x
           cd ./container/
-
-          # Latest tag
           export IMAGE_TAG=$QUAY_REPO:latest
-          make release-push
-
-          # Branch tag
-          export BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)
-          podman tag $QUAY_REPO:latest $QUAY_REPO:$BRANCH
-          export IMAGE_TAG=$QUAY_REPO:$BRANCH
           make release-push
