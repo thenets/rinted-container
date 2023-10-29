@@ -12,11 +12,11 @@ Container images:
 
 ## How to use
 
-You must have Podman or Docker installed in your system. I recommend Podman for security reasons, learn more:
+You must have Podman or Docker installed in your system. I recommend Podman for security reasons; learn more:
 - My blog post: [How to securely share secrets with podman containers](https://blog.thenets.org/how-to-securely-share-secrets-with-podman-containers/)
 - Red Hat's docs: [What is Podman? Podman vs. Docker](https://www.redhat.com/en/topics/containers/what-is-podman#podman-vs-docker)
 
-You can or expose the ports to the host or use the `--net=host` option to use the host network stack.
+You can expose the ports to the host or use the `--net=host` option to use the host network stack.
 
 ```bash
 # Rule format:
@@ -50,9 +50,9 @@ podman run -it --rm \
 
 ## Why this project exists?
 
-The rinetd project is my prefered way to redirect TCP ports. It is simple, easy to use and it is reliable. However, recent Linux distributions have removed the package from their repositories and it behaves as an old project, requiring dymamic libraries and a single configuration file.
+The rinetd project is my preferred way to redirect TCP ports. It is simple, easy to use, and it is reliable. However, recent Linux distributions have removed the package from their repositories, and it behaves as an old project, requiring dynamic libraries and a single configuration file.
 
-This repository contains a different approach, putting the rinetd inside Linux containers, with periodic builds for security patches, and a simple way to configure the rules using environment variables.
+This repository contains a different approach, putting the rinetd inside Linux containers, with periodic builds for security patches and a simple way to configure the rules using environment variables.
 
 ## Credits
 
