@@ -75,6 +75,7 @@ for RULE_NAME in $RULES_NAME; do
     RULE=$(eval "echo \$$RULE_NAME")
     RULE=$(echo "$RULE" | tr -s ' ')
 
+    # ----- Rule: Allow/Deny -----
     function _allow_deny_rule() {
         _FIRST_WORD=$(echo "$RULE" | cut -d' ' -f1)
         if [ "$_FIRST_WORD" = "allow" -o "$_FIRST_WORD" = "deny" ]; then
@@ -138,11 +139,17 @@ for RULE_NAME in $RULES_NAME; do
 
             log_success "#$i: $RULE_NAME = '$RULE' (allow/deny rule)"
             i=$((i+1))
-            continue
+            IS_ALLOW_DENY_RULE=1
+            return
         fi
     }
+    IS_ALLOW_DENY_RULE=0
     _allow_deny_rule
+    if [ $IS_ALLOW_DENY_RULE -eq 1 ]; then
+        continue
+    fi
 
+    # ----- Rule: Forwarding -----
     function _forward_rule() {
         _TEST=$(echo "$RULE" | grep -qE '^[^ ]+ [0-9]+ [^ ]+ [0-9]+$')
         if [ $? -ne 0 ]; then
@@ -194,9 +201,14 @@ for RULE_NAME in $RULES_NAME; do
 
         log_success "#$i: $RULE_NAME = '$RULE'"
         i=$((i+1))
-        continue
+
+        IS_FORWARD_RULE=1
     }
+    IS_FORWARD_RULE=0
     _forward_rule
+    if [ $IS_FORWARD_RULE -eq 1 ]; then
+        continue
+    fi
 
 done
 
