@@ -18,8 +18,6 @@ You must have Podman or Docker installed in your system. I recommend Podman for 
 
 You can or expose the ports to the host or use the `--net=host` option to use the host network stack.
 
-![Container example](./docs/container-example.png)
-
 ```bash
 # Rule format:
 #   <from_ip> <from_port> <to_ip_or_domain> <to_port>
@@ -45,6 +43,10 @@ podman run -it --rm \
     -e RULE_blog_https="0.0.0.0 8443 1.2.3.4 443" \
     quay.io/thenets/rinetd:latest
 ```
+
+### Output example
+
+![Container example](./docs/container-example.png)
 
 ## Why this project exists?
 
