@@ -8,6 +8,11 @@ fi
 
 # Helpers
 # =========================
+if [ -z "$TERM" ] || [ "$TERM" == "dumb" ]; then
+    tput() {
+        return 0
+    }
+fi
 if ! type tput >/dev/null 2>&1; then
     tput() {
         return 0
