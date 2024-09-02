@@ -3,6 +3,7 @@ run-name: ${{ github.actor }} triggered a container build and push every week fo
 on:
   schedule:
     - cron: "0 0 * * 0"
+  workflow_dispatch:
 
 jobs:
   Container-Build-and-Push:
