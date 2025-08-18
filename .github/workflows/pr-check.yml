@@ -19,7 +19,7 @@ jobs:
       - run: echo "🐧 This job is now running on a '${{ runner.os }}' server."
 
       - name: "🚚 Check out repository code: ${{ github.ref }} ${{ github.repository }}"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: "🖥️ Container build"
         run: |
