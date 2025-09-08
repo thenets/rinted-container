@@ -16,7 +16,7 @@ jobs:
         run: echo "QUAY_REPO=quay.io/thenets/rinetd" >> $GITHUB_ENV
 
       - name: "🚚 Check out repository code: ${{ github.ref }} ${{ github.repository }}"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: "🔑 Authenticate with Quay.io"
         run: |
